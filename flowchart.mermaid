@@ -1,0 +1,12 @@
+flowchart TD
+  subgraph Horyxen Platform
+        User -- Deposits 20M XEN --> HorizonProtocol(Horizon Protocol) --> LiquidityManager(Liquidity Manager)
+        HorizonProtocol(Horizon Protocol) -- Mint HORYXEN --> RapidMintingProtocol(Rapid Minting Protocol)
+        LiquidityEngine -- Generates minting configurations --> RapidMintingProtocol(Rapid Minting Protocol)
+        LiquidityEngine -- Ensures 1:1 exchange rate between HORYXEN and XEN --> UniswapV3LP(Uniswap V3 LP Pools)
+        LiquidityManager -- Adds liquidity to Uniswap V3 LP pools --> UniswapV3LP(Uniswap V3 LP Pools)
+        LiquidityManager -- Recycles fees into HORYXEN/XEN LP pools --> UniswapV3LP
+        RapidMintingProtocol -- Distributes atleast 600k HORYXEN over 100 days --> User
+        UniswapV3LP -- Provides liquidity for HORYXEN and XEN trading --> LiquidityEngine(Liquidity Engine)
+    end
+    HorizonProtocol(Horizon Protocol) -->|Withdraws HORYXEN| Wallet
